@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="产品实验室：可交互的脱敏 Demo —— 岗位匹配助手、AI 外呼 Badcase 分析、通信图纸识别流程。" />
+<title>产品实验室 · 余俊曦 Product Lab</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body data-page="lab">
+
+<div class="bg-layer bg-glow"></div>
+<div class="bg-layer bg-grid"></div>
+<div class="bg-layer bg-noise"></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">YJ</span>
+      <span class="brand-copy"><b>YU JUNXI</b><small>PRODUCT LAB / 2026</small></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html" data-nav="home">首页<i>01</i></a>
+      <a href="resume.html" data-nav="resume">简历<i>02</i></a>
+      <a href="projects.html" data-nav="projects">项目<i>03</i></a>
+      <a href="lab.html" data-nav="lab">实验室<i>04</i></a>
+      <a href="blog.html" data-nav="blog">博客<i>05</i></a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn--ghost btn--sm" href="projects.html">项目案例 <span>↗</span></a>
+      <button class="burger" aria-label="打开菜单" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+  <nav class="mobile-nav">
+    <a href="index.html" data-nav="home">首页<b>01</b></a>
+    <a href="resume.html" data-nav="resume">简历<b>02</b></a>
+    <a href="projects.html" data-nav="projects">项目<b>03</b></a>
+    <a href="lab.html" data-nav="lab">实验室<b>04</b></a>
+    <a href="blog.html" data-nav="blog">博客<b>05</b></a>
+  </nav>
+</header>
+
+<main>
+  <section class="page-head">
+    <div class="wrap">
+      <span class="kicker">04 / PRODUCT LAB</span>
+      <h1>不只讲方案，<em>直接体验</em>结果。</h1>
+      <p class="lead">
+        以下 Demo 基于真实产品思路制作，数据全部为模拟脱敏内容，用于展示「需求 → 流程 → 输出」的完整链路。
+        每个 Demo 都有清晰的状态：待机、分析中、完成、异常。
+      </p>
+      <div class="page-stats">
+        <div class="page-stat"><b>03</b><small>可交互 Demo</small></div>
+        <div class="page-stat"><b>0</b><small>真实模型调用（本地规则模拟）</small></div>
+        <div class="page-stat"><b>4</b><small>状态：待机 / 分析中 / 完成 / 异常</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+
+      <!-- ============ TABS ============ -->
+      <div class="lab-tabs reveal">
+        <button class="lab-tab is-active" data-tab="matcher">岗位匹配助手 <small>01</small></button>
+        <button class="lab-tab" data-tab="badcase">外呼 Badcase 分析 <small>02</small></button>
+        <button class="lab-tab" data-tab="drawing">图纸识别流程 <small>03</small></button>
+        <button class="lab-tab" data-tab="traffic">交通数据可视化 <small>04</small></button>
+      </div>
+
+      <div class="lab-shell reveal mt-24">
+
+        <!-- ============ 01 JD MATCHER ============ -->
+        <div class="lab-panel is-active" data-panel="matcher">
+          <div class="lab-inner">
+            <div class="lab-control">
+              <span class="lab-id">LAB / 01 · JD MATCHER</span>
+              <h3>岗位匹配助手</h3>
+              <p>粘贴一段岗位描述，输出岗位类型判断、能力匹配度、推荐优先展示的项目，以及面试准备建议。</p>
+
+              <div class="samples" id="jdSamples"></div>
+
+              <textarea class="field" id="jdInput" placeholder="例如：负责 AI 应用产品规划与落地，熟悉 RAG、Agent、Prompt 工程；能够完成需求调研、MVP 定义与迭代规划；与算法、研发、运营跨部门协作，推动从 0 到 1 的产品上线……
+
+建议把「岗位职责 + 任职要求」一起粘贴进来，分析会更准确。"></textarea>
+
+              <button class="btn btn--primary btn--block mt-24" id="runMatch">开始分析 <span>↗</span></button>
+
+              <p class="muted mt-24" style="font-size:12.5px;line-height:1.7">
+                说明：第一版使用本地关键词规则模拟分析结果，不调用真实模型。接入真实 LLM 后，
+                该模块可直接替换为「模型推理 + 结构化输出」的实现方式。
+              </p>
+            </div>
+            <div class="lab-result" id="matchOutput">
+              <div class="empty-state">
+                <b>◎</b>
+                <p>等待输入一段岗位描述</p>
+                <small>或点击上方示例快速填充</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ 02 BADCASE ============ -->
+        <div class="lab-panel" data-panel="badcase">
+          <div class="lab-inner">
+            <div class="lab-control">
+              <span class="lab-id">LAB / 02 · BADCASE ANALYSIS</span>
+              <h3>AI 外呼 Badcase 分析</h3>
+              <p>选择一条模拟通话记录，查看通话摘要、失败原因归因、风险标签与可直接进入需求池的改进建议。</p>
+              <div class="call-list" id="callList"></div>
+              <p class="muted mt-24" style="font-size:12.5px;line-height:1.7">
+                切换通话记录会自动重新分析。转写文本中的高亮片段，是系统判定为问题的关键片段。
+              </p>
+            </div>
+            <div class="lab-result" id="callOutput">
+              <div class="empty-state">
+                <b>◌</b>
+                <p>正在准备分析…</p>
+                <small>ANALYSIS PENDING</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ 03 DRAWING FLOW ============ -->
+        <div class="lab-panel" data-panel="drawing">
+          <div class="lab-inner">
+            <div class="lab-control">
+              <span class="lab-id">LAB / 03 · DRAWING PIPELINE</span>
+              <h3>通信图纸识别流程</h3>
+              <p>模拟一张通信图纸从图像到结构化资源表的处理过程：预处理 → 区域定位 → 图元检测 / OCR → 语义结构化 → 结构化输出。</p>
+
+              <div class="stage-steps" id="drawingStages"></div>
+
+              <button class="btn btn--primary btn--block mt-24" id="runDrawing">运行识别流程 <span>↗</span></button>
+
+              <p class="muted mt-24" style="font-size:12.5px;line-height:1.7">
+                说明：图纸与识别结果均为模拟数据，用于演示流程与输出形态，不代表真实项目产出。
+              </p>
+            </div>
+            <div class="lab-result">
+              <div class="sheet" id="sheet">
+                <span class="sheet-frame"></span>
+                <i class="sheet-line" style="left:12%;top:34%;width:26%;height:1px"></i>
+                <i class="sheet-line" style="left:38%;top:34%;width:1px;height:32%"></i>
+                <i class="sheet-line" style="left:38%;top:66%;width:44%;height:1px"></i>
+                <i class="sheet-line" style="left:82%;top:66%;width:1px;height:18%"></i>
+                <b class="sheet-node" style="left:10%;top:31%"></b>
+                <b class="sheet-node" style="left:36%;top:31%"></b>
+                <b class="sheet-node" style="left:36%;top:63%"></b>
+                <b class="sheet-node" style="left:80%;top:63%"></b>
+                <b class="sheet-node" style="left:80%;top:81%"></b>
+                <span class="sheet-label" style="left:14%;top:23%">管井 J-014</span>
+                <span class="sheet-label" style="left:43%;top:38%">光缆段 C-207</span>
+                <span class="sheet-label" style="left:43%;top:71%">管井 J-015</span>
+                <span class="sheet-label" style="left:60%;top:55%">设备 E-031</span>
+                <span class="sheet-label" style="left:56%;top:87%">待复核区域</span>
+                <span class="scan-line" id="scanLine"></span>
+                <span class="sheet-meta">SHEET G-02 / PRE-FAULT LOCATION</span>
+              </div>
+              <div id="drawingOutput" class="mt-24">
+                <div class="empty-state" style="min-height:200px">
+                  <b>◎</b>
+                  <p>等待运行识别流程</p>
+                  <small>PIPELINE IDLE</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ 04 TRAFFIC (P2) ============ -->
+        <div class="lab-panel" data-panel="traffic">
+          <div class="lab-inner">
+            <div class="lab-control">
+              <span class="lab-id">LAB / 04 · COMING SOON</span>
+              <h3>交通数据可视化</h3>
+              <p>把交通态势数据（流量、拥堵、时段分布）做成可交互的可视化实验，用于展示交通专业背景与数据分析能力的结合。</p>
+              <div class="stage-steps">
+                <div class="stage-step"><b>DATA SOURCE<i>PLANNED</i></b><small>高德地图 API ／ 公开交通数据集</small></div>
+                <div class="stage-step"><b>PROCESSING<i>PLANNED</i></b><small>Python 清洗与指标计算 · ArcGIS 出图</small></div>
+                <div class="stage-step"><b>VISUALIZATION<i>PLANNED</i></b><small>流量热力图 · 时段分布 · 拥堵走廊</small></div>
+              </div>
+              <div class="notice mt-24">
+                <i>◈</i>
+                <span>该实验属于 P2 阶段规划内容，将在接入真实数据后上线。</span>
+              </div>
+            </div>
+            <div class="lab-result">
+              <div class="empty-state">
+                <b>◌</b>
+                <p>交通数据可视化实验正在规划中</p>
+                <small>STATUS · PLANNED (P2)</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="contact-box reveal">
+        <div>
+          <span class="kicker">BEHIND THE DEMO</span>
+          <h2>这些 Demo，<em>来自真实项目</em>。</h2>
+          <p class="lead">实验室里的每个交互，都对应项目页中一个真实案例。想看背后的判断过程，可以直接打开案例。</p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn--primary" href="projects.html">查看项目案例 <span>↗</span></a>
+          <a class="btn btn--ghost" href="resume.html">阅读简历 <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>© <span data-year>2026</span> YU JUNXI · PRODUCT LAB</span>
+    <span class="footer-links">
+      <a href="index.html">首页</a>
+      <a href="resume.html">简历</a>
+      <a href="projects.html">项目</a>
+      <a href="blog.html">博客</a>
+    </span>
+    <span>DEMO DATA · SIMULATED &amp; DESENSITIZED</span>
+  </div>
+</footer>
+
+<script src="assets/api.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

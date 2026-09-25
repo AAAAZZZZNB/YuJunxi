@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# 敏感 / 隐私文件：简历文档与个人照片不提交
+*.docx
+*.doc
+个人照.*
+*.tmp
+
+# 系统文件
+.DS_Store
+Thumbs.db
