@@ -1,0 +1,7 @@
+# Netlify 部署配置
+# 前端为纯静态站点，无需构建命令，发布目录为 frontend/。
+# 说明：backend/（FastAPI 后端）不在 Netlify 上运行；前端 api.js 会自动回退到 data.js 本地数据，
+#       实验室 JD 匹配也会回退到本地规则引擎，站点在纯静态下完整可用。
+
+[build]
+  publish = "frontend"

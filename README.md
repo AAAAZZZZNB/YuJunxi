@@ -101,8 +101,9 @@ uvicorn main:app --reload
 
 ## 部署建议
 
-- **一体式**：把整个 `YuJunxi` 目录部署到支持 Python 的平台（Render / Railway / 云服务器），启动 `uvicorn main:app` 即可。
-- **分离式**：前端交给 Netlify / Vercel，后端单独部署，前端 `api.js` 里设置 `window.API_BASE` 指向后端地址。
+- **Netlify 纯静态（已配置，推荐）**：根目录的 `netlify.toml` 已把发布目录设为 `frontend/`，在 Netlify 里连接本仓库即可一键部署。前端会自动用本地数据兜底（JD 匹配走本地规则），站点完整可用；FastAPI 后端不在 Netlify 上运行。
+- **一体式（后端也上线）**：把整个 `YuJunxi` 目录部署到支持 Python 的平台（Render / Railway / 云服务器），启动 `uvicorn main:app`，一个进程同时提供 API 与前端。
+- **分离式**：前端交给 Netlify，后端单独部署，前端 `api.js` 里设置 `window.API_BASE` 指向后端地址。
 
 ## 下一步
 
