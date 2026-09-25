@@ -5,7 +5,8 @@ __pycache__/
 venv/
 .env
 
-# 敏感 / 隐私文件：简历文档与个人照片不提交
+# 敏感 / 隐私文件：简历文档不提交
+# 个人照片：首页已按用户要求公开为 frontend/assets/avatar.jpg；demo 里的原始「个人照.*」仍不提交
 *.docx
 *.doc
 个人照.*

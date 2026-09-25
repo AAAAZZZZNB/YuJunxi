@@ -3,9 +3,74 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="余俊曦 · 个人产品空间：AI 产品经理 / 产品工程实践者 / 交通科技研究者。展示教育背景、产品经历、AI 项目与可验证的交互 Demo。" />
-<title>余俊曦 · Product Lab｜AI 产品经理个人作品集</title>
+<meta name="description" content="余俊曦（YU JUNXI）· 2027 届毕业生 · 求职意向：AI 产品经理。华南理工大学交通运输规划与管理硕士，专注 AI 应用与 B 端产品。" />
+<title>余俊曦 · AI 产品经理｜个人作品集</title>
 <link rel="stylesheet" href="assets/styles.css" />
+<style>
+/* ===== 首页极简个人介绍（仅本页使用） ===== */
+.portrait {
+  margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+}
+.portrait img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line-2);
+  background: var(--bg-elev);
+  box-shadow: 0 40px 110px -50px rgba(47, 227, 180, 0.5);
+}
+.portrait figcaption {
+  margin-top: 16px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+.intro-target {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+  padding: 16px 20px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+}
+.intro-target-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+.intro-target-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+.intro-target-value i {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13.5px;
+  color: var(--text-3);
+  margin-left: 4px;
+}
+.intro-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+</style>
 <script>document.documentElement.classList.add("js");</script>
 </head>
 <body data-page="home">
@@ -43,227 +108,38 @@
 </header>
 
 <main>
-  <!-- ===================== HERO ===================== -->
+  <!-- ===================== HERO（极简个人介绍） ===================== -->
   <section class="hero">
     <div class="wrap">
       <div class="hero-grid">
-        <div>
-          <div class="reveal">
-            <span class="status-pill"><span class="pulse"></span> OPEN TO AI PRODUCT ROLES</span>
-            <h1>把复杂问题，<em>做成</em><span>真正可用的 AI 产品。</span></h1>
-            <p class="hero-sub">
-              我是余俊曦，一名 AI 产品经理、产品工程实践者和交通科技研究者。
-              关注企业服务、智能系统与交通基础设施中的 AI 落地 —— 从问题定义、指标设计、Prompt / Agent 工作流，
-              到用 Vibe Coding 把方案做成真正能点开的产品。
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn--primary" href="projects.html">查看项目 <span>↗</span></a>
-              <a class="btn btn--ghost" href="resume.html">阅读简历 <span>→</span></a>
-              <a class="btn btn--ghost" href="lab.html">进入实验室 <span>◈</span></a>
-            </div>
-            <div class="hero-meta">
-              <span>广州 · 中国</span>
-              <span>华南理工大学 · 硕士在读</span>
-              <span>AI × 产品 × 数据 × 交通</span>
-            </div>
+        <div class="reveal">
+          <span class="kicker">YU JUNXI</span>
+          <h1>余俊曦</h1>
+          <p class="hero-sub">2027 届毕业生 · 华南理工大学 · 交通运输规划与管理 硕士 · 广州</p>
+
+          <div class="intro-target">
+            <span class="intro-target-label">求职意向</span>
+            <span class="intro-target-value">AI 产品经理<i> · AI 应用 / B 端</i></span>
+          </div>
+
+          <div class="intro-tags">
+            <span class="tag tag--teal">AI 产品 0→1</span>
+            <span class="tag tag--teal">Vibe Coding 全栈</span>
+            <span class="tag tag--teal">RAG · Agent 工作流</span>
+            <span class="tag tag--teal">交通 × AI</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="projects.html">查看项目 <span>↗</span></a>
+            <a class="btn btn--ghost" href="resume.html">阅读简历 <span>→</span></a>
           </div>
         </div>
 
-        <div class="reveal" data-delay="2">
-          <div class="console">
-            <div class="console-top">
-              <span>PRODUCT CONSOLE / 001</span>
-              <span class="console-live"><i class="pulse"></i> LIVE SYSTEM</span>
-            </div>
-            <div class="console-head">
-              <span class="console-icon">⌘</span>
-              <div>
-                <small>MY WORKFLOW</small>
-                <b>从问题到产品</b>
-              </div>
-            </div>
-            <div class="console-steps">
-              <div class="cstep">
-                <span class="cstep-num">01</span>
-                <div><b>理解问题</b><small>场景 · 用户 · 业务约束</small></div>
-                <span class="cstep-state">DONE</span>
-                <span class="cstep-rail"></span>
-              </div>
-              <div class="cstep">
-                <span class="cstep-num">02</span>
-                <div><b>定义方案</b><small>MVP · 流程 · 数据结构</small></div>
-                <span class="cstep-state">DONE</span>
-                <span class="cstep-rail"></span>
-              </div>
-              <div class="cstep">
-                <span class="cstep-num">03</span>
-                <div><b>快速实现</b><small>AI · Vibe Coding · Prototype</small></div>
-                <span class="cstep-state">BUILDING</span>
-                <span class="cstep-rail"></span>
-              </div>
-              <div class="cstep">
-                <span class="cstep-num">04</span>
-                <div><b>验证迭代</b><small>反馈 · 数据 · 下一版本</small></div>
-                <span class="cstep-state">NEXT</span>
-                <span class="cstep-rail"></span>
-              </div>
-            </div>
-            <div class="console-bar"><i></i></div>
-            <div class="console-foot">
-              <span class="console-state">STEP 03 / 04</span>
-              <span>BUILDING WITH INTENT</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== METRICS ===================== -->
-  <section class="section section--tight">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <span class="kicker">SELECTED SIGNALS</span>
-          <h2 class="h2">用结果建立信任。</h2>
-        </div>
-        <p class="lead">每个数字都尽量标注了它来自哪段经历、服务什么目标。生产数据已脱敏，仅保留可公开的比例、规模与目标值。</p>
-      </div>
-      <div class="metric-grid" data-render="metrics"></div>
-      <div class="org-strip reveal mt-40" data-render="orgs"></div>
-    </div>
-  </section>
-
-  <div class="wrap"><div class="divider"></div></div>
-
-  <!-- ===================== SELECTED WORK ===================== -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <span class="kicker">03 / SELECTED WORK</span>
-          <h2 class="h2">复杂场景，拆成<em>可用系统</em>。</h2>
-        </div>
-        <p class="lead">我更关心问题如何被定义、方案如何被验证，以及最终有没有形成可持续迭代的产品闭环。</p>
-      </div>
-      <div class="work-grid" data-render="work"></div>
-      <div class="mt-40 reveal">
-        <a class="btn btn--ghost" href="projects.html">查看全部 8 个项目 <span>↗</span></a>
-      </div>
-    </div>
-  </section>
-
-  <div class="wrap"><div class="divider"></div></div>
-
-  <!-- ===================== CAPABILITY ===================== -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <span class="kicker">CAPABILITY MATRIX</span>
-          <h2 class="h2">能力不是清单，是组合方式。</h2>
-        </div>
-        <p class="lead">产品、AI、工程、行业四个方向互相咬合：能定义问题，也能把方案做到可以被验证的程度。</p>
-      </div>
-      <div class="cap-grid" data-render="capabilities"></div>
-    </div>
-  </section>
-
-  <!-- ===================== METHOD ===================== -->
-  <section class="section section--tight">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <span class="kicker">HOW I WORK</span>
-          <h2 class="h2">我的工作方式。</h2>
-        </div>
-        <p class="lead">先结论、后过程；先成果、后职责。用案例证明能力，而不是用形容词。</p>
-      </div>
-      <div class="pipe reveal">
-        <div class="pipe-step">
-          <small>01 / UNDERSTAND</small>
-          <b>把问题问清楚</b>
-          <p>先区分「现象」与「原因」，明确谁在承受成本、什么指标在恶化。</p>
-        </div>
-        <div class="pipe-step">
-          <small>02 / DEFINE</small>
-          <b>缩到最小可用</b>
-          <p>定义 MVP 边界与验收标准，先解决一个真实痛点，再谈扩展。</p>
-        </div>
-        <div class="pipe-step">
-          <small>03 / BUILD</small>
-          <b>用原型说话</b>
-          <p>用 Prompt / Agent 工作流与 Vibe Coding 把方案做成能点开的东西。</p>
-        </div>
-        <div class="pipe-step">
-          <small>04 / VALIDATE</small>
-          <b>让数据回流</b>
-          <p>把使用结果变成下一版的输入，形成可持续迭代的闭环。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="wrap"><div class="divider"></div></div>
-
-  <!-- ===================== LAB TEASER ===================== -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <span class="kicker">04 / PRODUCT LAB</span>
-          <h2 class="h2">不只讲方案，<em>直接体验</em>结果。</h2>
-        </div>
-      </div>
-      <div class="grid-2">
-        <a class="card reveal" href="lab.html">
-          <span class="card-label">LAB / 01 · JD MATCHER</span>
-          <h3 class="h3 mt-24">岗位匹配助手</h3>
-          <p class="lead mt-24">粘贴一段岗位描述，输出岗位类型判断、能力匹配度、推荐项目与面试准备建议。</p>
-          <span class="work-link mt-24" style="display:inline-flex;margin-top:22px">开始体验</span>
-        </a>
-        <a class="card reveal" data-delay="1" href="lab.html">
-          <span class="card-label">LAB / 02 · BADCASE ANALYSIS</span>
-          <h3 class="h3 mt-24">AI 外呼 Badcase 分析</h3>
-          <p class="lead mt-24">选择一条脱敏通话记录，查看通话摘要、失败原因归因、风险标签与改进建议。</p>
-          <span class="work-link mt-24" style="display:inline-flex;margin-top:22px">开始体验</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <div class="wrap"><div class="divider"></div></div>
-
-  <!-- ===================== BLOG TEASER ===================== -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <span class="kicker">05 / BLOG</span>
-          <h2 class="h2">最近写的<em>工作笔记</em>。</h2>
-        </div>
-        <p class="lead">把项目里的具体判断写下来 —— 切片策略怎么定、原型做到什么程度、指标该看哪一个。</p>
-      </div>
-      <div class="post-grid" data-render="posts"></div>
-      <div class="mt-40 reveal">
-        <a class="btn btn--ghost" href="blog.html">查看全部文章 <span>↗</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== CONTINUE ===================== -->
-  <section class="section">
-    <div class="wrap">
-      <div class="contact-box reveal">
-        <div>
-          <span class="kicker">CONTINUE</span>
-          <h2>还有更完整的<br><em>档案与案例</em>。</h2>
-          <p class="lead">简历页有完整的教育、实习与奖项记录；项目页有 8 个案例的背景、方案与结果；博客里是具体的工作方法复盘。</p>
-        </div>
-        <div class="contact-actions">
-          <a class="btn btn--primary" href="resume.html">阅读简历 <span>→</span></a>
-          <a class="btn btn--ghost" href="projects.html">查看项目案例 <span>↗</span></a>
-          <a class="btn btn--ghost" href="blog.html">阅读博客文章 <span>↗</span></a>
+        <div class="reveal" data-delay="1">
+          <figure class="portrait">
+            <img src="assets/avatar.jpg" alt="余俊曦" />
+            <figcaption>YU JUNXI / 2027</figcaption>
+          </figure>
         </div>
       </div>
     </div>
