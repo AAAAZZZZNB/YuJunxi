@@ -683,65 +683,94 @@
   }
 
   /* ---------------- 项目列表 ---------------- */
+  function externalAction(p, compact) {
+    if (!p.externalLink) return "";
+    return '<a class="project-external' + (compact ? ' project-external--compact' : '') + '" href="' + esc(p.externalLink) + '" target="_blank" rel="noopener noreferrer">' + esc(p.externalLabel || "打开项目") + ' <span>↗</span></a>';
+  }
+
+  function projectActionRow(p) {
+    return '<div class="project-action-row">' +
+      '<a class="project-detail-link" href="project.html?id=' + esc(p.id) + '">查看拆解 <span>→</span></a>' +
+      externalAction(p, true) +
+      '</div>';
+  }
+
+  function playgroundCard(p, i) {
+    var isVoxel = p.id === "voxel-world";
+    var visual = isVoxel
+      ? '<div class="play-visual play-visual--voxel"><span class="play-orbit play-orbit--one"></span><span class="play-orbit play-orbit--two"></span><div class="voxel-scene"><i></i><i></i><i></i><i></i><b></b></div><span class="play-visual-caption">WASD · MOUSE · SPACE</span></div>'
+      : '<div class="play-visual play-visual--date"><span class="date-glow"></span><span class="date-heart">♡</span><div class="date-route"><i></i><i></i><i></i><b>中间点</b></div><span class="play-visual-caption">INPUT · MATCH · GO</span></div>';
+    return '<article class="play-card reveal" data-delay="' + i + '">' +
+      visual +
+      '<div class="play-card-body">' +
+      '<div class="play-card-kicker"><span>0' + (i + 1) + ' / COZE PLAYGROUND</span><span class="play-status">● 可试玩</span></div>' +
+      '<h3>' + esc(p.title) + '</h3>' +
+      '<p>' + esc(p.summary) + '</p>' +
+      '<div class="tag-row">' + (p.tags || []).slice(0, 3).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('') + '</div>' +
+      projectActionRow(p) +
+      '</div></article>';
+  }
+
+  function renderPlayground() {
+    var host = $('[data-render="playground"]');
+    if (!host) return;
+    var list = (P.projects || []).filter(function (p) { return p.isPlayground; });
+    host.innerHTML = list.map(playgroundCard).join('');
+  }
+
   function initProjects() {
-    var host = $("[data-render='projects']");
+    var host = $('[data-render="projects"]');
     if (!host) return;
 
-    var cats = ["全部"];
+    var cats = ['全部'];
     (P.projects || []).forEach(function (p) {
-      p.category.forEach(function (c) { if (cats.indexOf(c) < 0) cats.push(c); });
+      (p.category || []).forEach(function (c) { if (cats.indexOf(c) < 0) cats.push(c); });
     });
 
-    var onScroll = function () {
-      var cards = $$(".proj-card.reveal:not(.is-in)");
-      if (!cards.length || !("IntersectionObserver" in window)) return;
+    function onScroll() {
+      var cards = $$('.proj-card.reveal:not(.is-in)');
+      if (!cards.length || !('IntersectionObserver' in window)) return;
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
-          if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); }
+          if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
         });
       }, { threshold: 0.06 });
       cards.forEach(function (c) { io.observe(c); });
-    };
+    }
 
     function draw(filter) {
       var list = (P.projects || []).filter(function (p) {
-        return filter === "全部" || p.category.indexOf(filter) >= 0;
+        return filter === '全部' || (p.category || []).indexOf(filter) >= 0;
       });
-      host.innerHTML = list
-        .map(function (p) {
-          return (
-            '<a class="proj-card reveal" href="project.html?id=' + esc(p.id) + '">' +
-            '<div class="proj-thumb proj-thumb--' + esc(p.accent) + '"><span style="position:relative;z-index:1">' + esc(p.monogram) + "</span></div>" +
-            '<div class="proj-body">' +
-            '<div class="work-meta"><span>' + esc(p.period) + "</span><span>" + esc(p.org) + "</span></div>" +
-            "<h3>" + esc(p.title) + "</h3>" +
-            "<p>" + esc(p.summary) + "</p>" +
-            '<div class="tag-row">' +
-            p.category.map(function (c) { return '<span class="tag tag--teal">' + esc(c) + "</span>"; }).join("") +
-            "</div>" +
-            '<div class="proj-foot"><small>' + esc(p.role) + '</small><span class="work-link">查看案例</span></div>' +
-            "</div></a>"
-          );
-        })
-        .join("");
+      host.innerHTML = list.map(function (p, i) {
+        return (
+          '<article class="proj-card reveal" data-delay="' + (i % 4) + '">' +
+          '<div class="proj-thumb proj-thumb--' + esc(p.accent) + '"><span style="position:relative;z-index:1">' + esc(p.monogram) + '</span>' + (p.isPlayground ? '<small class="proj-thumb-badge">可试玩</small>' : '') + '</div>' +
+          '<div class="proj-body">' +
+          '<div class="work-meta"><span>' + esc(p.period) + '</span><span>' + esc(p.org) + '</span></div>' +
+          '<h3><a href="project.html?id=' + esc(p.id) + '">' + esc(p.title) + '</a></h3>' +
+          '<p>' + esc(p.summary) + '</p>' +
+          '<div class="tag-row">' + (p.category || []).map(function (c) { return '<span class="tag tag--teal">' + esc(c) + '</span>'; }).join('') + '</div>' +
+          '<div class="proj-foot"><small>' + esc(p.role) + '</small>' + projectActionRow(p) + '</div>' +
+          '</div></article>'
+        );
+      }).join('');
       onScroll();
     }
 
-    var bar = $("[data-filter='projects']");
+    var bar = $('[data-filter="projects"]');
     if (bar) {
-      bar.innerHTML = cats
-        .map(function (c, i) {
-          return '<button class="filter-btn' + (i === 0 ? " is-active" : "") + '" data-cat="' + esc(c) + '">' + esc(c) + "</button>";
-        })
-        .join("");
-      $$("button", bar).forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          $$("button", bar).forEach(function (b) { b.classList.toggle("is-active", b === btn); });
-          draw(btn.getAttribute("data-cat"));
+      bar.innerHTML = cats.map(function (c, i) {
+        return '<button class="filter-btn' + (i === 0 ? ' is-active' : '') + '" data-cat="' + esc(c) + '">' + esc(c) + '</button>';
+      }).join('');
+      $$('button', bar).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          $$('button', bar).forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+          draw(btn.getAttribute('data-cat'));
         });
       });
     }
-    draw("全部");
+    draw('全部');
   }
 
   /* ---------------- 项目详情 ---------------- */
@@ -767,6 +796,7 @@
         '<div class="tag-row mt-24">' +
         p.tags.map(function (t) { return '<span class="tag tag--teal">' + esc(t) + "</span>"; }).join("") +
         "</div>" +
+         (p.externalLink ? '<div class="detail-actions">' + externalAction(p, false) + '<a class="btn btn--ghost btn--sm" href="projects.html#playground">返回作品总览 <span>↗</span></a></div>' : "") +
         '<div class="fact-grid">' +
         '<div class="fact"><small>MY ROLE</small><b>' + esc(p.role) + "</b></div>" +
         '<div class="fact"><small>ORGANIZATION</small><b>' + esc(p.org) + "</b></div>" +
@@ -835,6 +865,7 @@
           })
           .join("") +
         "</div></div>" +
+         (p.externalLink ? '<div class="side-card side-card--accent"><h4>TRY THE WORK</h4><p class="side-note">' + esc(p.externalNote || "打开外部项目查看可用原型") + '</p>' + externalAction(p, false) + '</div>' : "") +
         '<div class="side-card"><h4>KEY RESULTS</h4><ul class="stat-list">' +
         (p.metrics || [])
           .map(function (m) { return "<li><b>" + esc(m.v) + "</b><span>" + esc(m.l) + "</span></li>"; })
@@ -1524,6 +1555,7 @@
     renderCapabilities();
     renderWorkCards();
     renderMarquee();
+    renderPlayground();
 
     initNav();
     initConsole();

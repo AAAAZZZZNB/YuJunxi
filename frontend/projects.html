@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="余俊曦的项目案例库：AI 外呼分析平台、通信图纸 AI 录入系统、筑云智库、AI 数字人、地下物流系统、具身智能巡检等。" />
-<title>项目 · 余俊曦 Product Lab</title>
+<meta name="description" content="余俊曦的项目作品集：AI 产品、业务系统与可试玩的 Coze 互动作品。" />
+<title>项目作品 · 余俊曦 Product Lab</title>
 <link rel="stylesheet" href="assets/styles.css" />
 <script>document.documentElement.classList.add("js");</script>
 </head>
@@ -38,29 +38,54 @@
 </header>
 
 <main>
-  <section class="section">
+  <section class="projects-hero">
     <div class="wrap">
-
-      <!-- 工具条：直接进入筛选与项目导航，不做大标题 -->
-      <div class="page-toolbar">
-        <div class="toolbar-left">
+      <div class="projects-hero-grid">
+        <div class="reveal">
           <span class="kicker">03 / SELECTED WORK</span>
-          <span class="toolbar-meta">8 个案例 · 统一模板：背景 → 问题 → 角色 → 方案 → 实现 → 结果 → 复盘</span>
+          <h1>把想法做成<br /><em>可以被打开的体验</em></h1>
+          <p class="projects-hero-lead">这里收录我从问题定义、产品方案到实现验证的作品。既有真实业务中的 AI / B 端项目，也有可以马上试玩的 Coze 互动实验。</p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="#playground">先玩两个 Demo <span>↓</span></a>
+            <a class="btn btn--ghost" href="#case-library">浏览完整案例 <span>↘</span></a>
+          </div>
         </div>
-        <div class="toolbar-left">
-          <a class="btn btn--ghost btn--sm" href="lab.html">产品实验室 <span>◈</span></a>
+        <div class="projects-hero-panel reveal" data-delay="1">
+          <div class="hero-panel-top"><span>PORTFOLIO INDEX</span><b>2026</b></div>
+          <div class="hero-panel-word">WORK<br /><i>IN</i><br />PROGRESS</div>
+          <div class="hero-panel-bottom"><span>10 PROJECTS</span><span>2 PLAYABLE</span><span>AI × PRODUCT</span></div>
         </div>
       </div>
+    </div>
+  </section>
 
+  <section class="section section--tight" id="playground">
+    <div class="wrap">
+      <div class="section-head projects-section-head reveal">
+        <div>
+          <span class="kicker">PLAYGROUND / 可试玩作品</span>
+          <h2 class="h2">先体验，再看我是<em>怎么做的</em></h2>
+        </div>
+        <p class="lead">两个 Coze 作品分别验证了「3D 互动世界」与「AI 生活决策」：点击卡片即可打开试玩，详情页保留完整的产品拆解。</p>
+      </div>
+      <div class="playground-grid" data-render="playground"></div>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="case-library">
+    <div class="wrap">
+      <div class="page-toolbar projects-toolbar">
+        <div class="toolbar-left">
+          <span class="kicker">CASE LIBRARY / 案例库</span>
+          <span class="toolbar-meta">按能力方向筛选；每个案例都按「背景 → 问题 → 角色 → 方案 → 实现 → 结果 → 复盘」展开。</span>
+        </div>
+        <a class="btn btn--ghost btn--sm" href="lab.html">产品实验室 <span>◈</span></a>
+      </div>
       <div class="filter-bar reveal" data-filter="projects"></div>
       <div class="proj-grid" data-render="projects"></div>
-
       <div class="notice reveal mt-40">
         <i>◈</i>
-        <span>
-          项目中的企业数据均为脱敏后的比例、规模与目标值；不包含生产接口、内部截图与未授权内容。
-          缺少细节的位置（如准确起止时间、可公开素材、量化基线）会在正文中明确标注，不做夸大表述。
-        </span>
+        <span>企业项目中的数据均为脱敏后的比例、规模与目标值；Coze 互动作品为个人实验，用于展示从需求到可用原型的快速落地能力。</span>
       </div>
     </div>
   </section>
@@ -71,12 +96,12 @@
         <div>
           <span class="kicker">MORE DETAILS</span>
           <h2>想看更多<em>细节与取舍</em>？</h2>
-          <p class="lead">当时放弃的方案、踩过的坑、最终为什么这样设计 —— 都写在每个案例的「复盘与下一步」章节里。</p>
+          <p class="lead">点击任意案例，查看我如何拆解问题、设计方案、组织 AI 与工程实现，并记录下一步复盘。</p>
         </div>
         <div class="contact-actions">
-          <a class="btn btn--primary" href="lab.html">体验实验室 Demo <span>◈</span></a>
+          <a class="btn btn--primary" href="lab.html">体验产品实验室 <span>◈</span></a>
           <a class="btn btn--ghost" href="resume.html">阅读简历 <span>→</span></a>
-          <a class="btn btn--ghost" href="blog.html">阅读博客文章 <span>↗</span></a>
+          <a class="btn btn--ghost" href="mailto:Yujunxi_scut@163.com">联系我 <span>↗</span></a>
         </div>
       </div>
     </div>
@@ -92,7 +117,7 @@
       <a href="lab.html">实验室</a>
       <a href="blog.html">博客</a>
     </span>
-    <span>8 PROJECTS / 7-SECTION TEMPLATE</span>
+    <span>10 PROJECTS / 2 PLAYABLE</span>
   </div>
 </footer>
 
