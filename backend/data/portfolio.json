@@ -143,6 +143,8 @@
     {
       "id": "outbound",
       "order": 1,
+      "group": "product",
+      "sub": "ai",
       "featured": true,
       "accent": "teal",
       "monogram": "AI",
@@ -259,6 +261,8 @@
     {
       "id": "drawing",
       "order": 2,
+      "group": "product",
+      "sub": "ai",
       "featured": true,
       "accent": "blue",
       "monogram": "OCR",
@@ -381,6 +385,8 @@
     {
       "id": "cloud",
       "order": 3,
+      "group": "product",
+      "sub": "ai",
       "featured": true,
       "accent": "violet",
       "monogram": "RAG",
@@ -493,6 +499,8 @@
     {
       "id": "digital-human",
       "order": 4,
+      "group": "product",
+      "sub": "c",
       "featured": false,
       "accent": "orange",
       "monogram": "AI",
@@ -604,6 +612,8 @@
     {
       "id": "logistics",
       "order": 5,
+      "group": "supply",
+      "sub": "scm",
       "featured": false,
       "accent": "teal",
       "monogram": "CO₂",
@@ -714,6 +724,8 @@
     {
       "id": "robot-dog",
       "order": 6,
+      "group": "product",
+      "sub": "b",
       "featured": false,
       "accent": "orange",
       "monogram": "ROB",
@@ -826,6 +838,8 @@
     {
       "id": "jd-fulfillment",
       "order": 7,
+      "group": "product",
+      "sub": "service",
       "featured": false,
       "accent": "blue",
       "monogram": "BSS",
@@ -838,7 +852,7 @@
       "category": [
         "业务系统",
         "流程设计",
-        "B 端产品"
+        "客服产品"
       ],
       "summary": "整合 6 个业务系统数据，重建预约与超时规则体系，支撑搬家业务多城市快速开城。",
       "tags": [
@@ -953,6 +967,8 @@
     {
       "id": "guiyan",
       "order": 8,
+      "group": "product",
+      "sub": "c",
       "featured": false,
       "accent": "violet",
       "monogram": "VLT",
@@ -1060,6 +1076,8 @@
     {
       "id": "voxel-world",
       "order": 9,
+      "group": "vibe",
+      "sub": "vibe",
       "featured": true,
       "isPlayground": true,
       "accent": "teal",
@@ -1180,6 +1198,8 @@
     {
       "id": "city-date",
       "order": 10,
+      "group": "vibe",
+      "sub": "vibe",
       "featured": true,
       "isPlayground": true,
       "accent": "orange",
@@ -1296,6 +1316,300 @@
           "可以增加分享卡片与共同确认机制，让推荐结果更适合在情侣之间传播和协商。"
         ]
       }
+    },
+    {
+      "id": "short-video-strategy",
+      "order": 11,
+      "featured": false,
+      "group": "product",
+      "sub": "strategy",
+      "accent": "violet",
+      "monogram": "KPI",
+      "thumbLabel": "GROWTH STRATEGY",
+      "title": "短视频投放策略与指标监控体系",
+      "en": "Short-video Strategy & Metrics",
+      "org": "广州浩传网络科技",
+      "role": "产品经理 · 数据策略",
+      "period": "2025.12 — 2026.04",
+      "category": [
+        "数据策略",
+        "指标体系",
+        "投放优化"
+      ],
+      "summary": "建立 PV、UV、订购量、订购转化率等核心指标监控体系，形成月度 / 年度数据台账，基于用户画像偏差制定春节新 IP 投放策略。",
+      "tags": [
+        "指标体系",
+        "数据台账",
+        "用户画像",
+        "投放策略"
+      ],
+      "metrics": [
+        {
+          "v": "4 类",
+          "l": "核心监控指标（PV / UV / 订购量 / 转化率）"
+        },
+        {
+          "v": "月度/年度",
+          "l": "数据台账沉淀"
+        },
+        {
+          "v": "春节",
+          "l": "新 IP 投放策略产出"
+        }
+      ],
+      "problemStatement": "短视频投放效果缺少统一监控口径，投放策略依赖经验判断；需要把 PV、UV、订购量、订购转化率等核心指标沉淀为可持续维护的数据台账，并在春节等关键节点基于用户画像偏差制定新 IP 投放策略。",
+      "sections": {
+        "background": [
+          "短视频投放是内容侧获客与转化的核心渠道，PV、UV、订购量、订购转化率是衡量投放效果的核心指标。",
+          "此前这些指标分散在不同平台与报表中，缺少统一的监控体系与可持续维护的数据台账。"
+        ],
+        "problems": [
+          {
+            "t": "指标口径分散",
+            "d": "核心指标缺少统一口径，不同投放渠道与内容的效果无法横向比较。"
+          },
+          {
+            "t": "数据不沉淀",
+            "d": "缺少月度 / 年度数据台账，历史投放效果无法被复用与对比。"
+          },
+          {
+            "t": "策略依赖经验",
+            "d": "关键节点（如春节）的投放方向缺少数据支撑，依赖个人经验判断。"
+          }
+        ],
+        "role": [
+          "建立 PV、UV、订购量、订购转化率等核心指标的监控体系。",
+          "形成月度 / 年度数据台账，沉淀可持续维护的数据资产。",
+          "基于用户画像偏差，制定春节新 IP 的投放策略。"
+        ],
+        "solution": [
+          {
+            "n": "01",
+            "t": "指标监控",
+            "d": "统一 PV、UV、订购量、订购转化率等核心指标口径，形成可观测的监控体系。"
+          },
+          {
+            "n": "02",
+            "t": "数据台账",
+            "d": "按月 / 年度沉淀数据台账，让历史投放效果可对比、可复盘。"
+          },
+          {
+            "n": "03",
+            "t": "画像偏差",
+            "d": "基于用户画像偏差识别投放机会，制定春节新 IP 的投放策略。"
+          }
+        ],
+        "implementation": [
+          "统一核心指标的统计口径，覆盖 PV、UV、订购量、订购转化率等关键指标。",
+          "建立月度 / 年度数据台账，形成可持续维护的数据资产。",
+          "基于用户画像偏差，制定春节新 IP 的投放策略。"
+        ],
+        "results": [
+          {
+            "v": "4 类",
+            "l": "核心指标统一监控"
+          },
+          {
+            "v": "月度/年度",
+            "l": "数据台账沉淀"
+          },
+          {
+            "v": "春节",
+            "l": "新 IP 投放策略产出"
+          }
+        ],
+        "resultsText": [
+          "形成从指标监控、数据台账到投放策略的完整链路，让投放决策从经验判断转向数据支撑。",
+          "[待补充] 具体投放效果数据待本人补充。"
+        ],
+        "retro": [
+          "指标监控体系需要持续接入新数据源，避免台账只覆盖部分渠道。",
+          "用户画像偏差的识别可以进一步与投放平台数据打通，形成自动化策略建议。"
+        ]
+      }
+    },
+    {
+      "id": "traffic-analysis",
+      "order": 12,
+      "featured": false,
+      "group": "product",
+      "sub": "data",
+      "accent": "blue",
+      "monogram": "GIS",
+      "thumbLabel": "TRAFFIC DATA",
+      "title": "城市交通态势分析与数据日报",
+      "en": "Traffic Condition Analysis",
+      "org": "广州市交通规划研究院有限公司",
+      "role": "工程师助理 · 数据分析",
+      "period": "2023.11 — 2024.02",
+      "category": [
+        "数据分析",
+        "GIS",
+        "可视化"
+      ],
+      "summary": "编写 Python 脚本调用高德地图 API 获取交通态势数据，使用 ArcGIS 生成交通流量图与拥堵热力图，撰写城市交通日报。",
+      "tags": [
+        "Python",
+        "高德地图 API",
+        "ArcGIS",
+        "数据日报"
+      ],
+      "metrics": [
+        {
+          "v": "自动化",
+          "l": "API 数据获取脚本"
+        },
+        {
+          "v": "2 类",
+          "l": "交通流量图 / 拥堵热力图"
+        },
+        {
+          "v": "日报",
+          "l": "城市交通日报产出"
+        }
+      ],
+      "problemStatement": "城市交通态势缺少持续、可量化的观测手段；需要把地图 API 的实时数据转成可读的流量图、热力图与日报，支撑交通态势研判。",
+      "sections": {
+        "background": [
+          "城市交通态势研判需要持续观测路网运行状态，但传统人工观测覆盖有限、时效性差。",
+          "项目通过调用高德地图 API 获取交通态势数据，并使用 GIS 工具进行可视化与日报产出。"
+        ],
+        "problems": [
+          {
+            "t": "数据获取成本高",
+            "d": "交通态势数据需要稳定的自动化获取方式，人工采集难以持续。"
+          },
+          {
+            "t": "态势不直观",
+            "d": "原始数据难以直接判断拥堵分布，需要转成流量图与热力图。"
+          },
+          {
+            "t": "缺少日常沉淀",
+            "d": "缺少固定节奏的城市交通日报，态势变化无法被持续跟踪。"
+          }
+        ],
+        "role": [
+          "编写 Python 脚本调用高德地图 API 获取交通态势数据。",
+          "使用 ArcGIS 生成交通流量图与拥堵热力图。",
+          "撰写城市交通日报，沉淀日常交通态势观测。"
+        ],
+        "solution": [
+          {
+            "n": "01",
+            "t": "数据获取",
+            "d": "编写 Python 脚本调用高德地图 API，自动获取交通态势数据。"
+          },
+          {
+            "n": "02",
+            "t": "可视化",
+            "d": "使用 ArcGIS 生成交通流量图与拥堵热力图，让态势可读。"
+          },
+          {
+            "n": "03",
+            "t": "日报沉淀",
+            "d": "撰写城市交通日报，形成持续的态势观测节奏。"
+          }
+        ],
+        "implementation": [
+          "编写 Python 脚本，调用高德地图 API 获取交通态势数据。",
+          "使用 ArcGIS 生成交通流量图与拥堵热力图。",
+          "撰写城市交通日报。"
+        ],
+        "results": [
+          {
+            "v": "自动化",
+            "l": "API 数据获取脚本"
+          },
+          {
+            "v": "2 类",
+            "l": "流量图 / 拥堵热力图"
+          },
+          {
+            "v": "日报",
+            "l": "城市交通日报"
+          }
+        ],
+        "resultsText": [
+          "形成从数据获取、可视化到日报产出的完整链路，让城市交通态势可被持续观测。",
+          "这是数据分析与 GIS 能力在真实交通场景中的落地，也是后续做交通 × AI 产品的基础。"
+        ],
+        "retro": [
+          "数据获取依赖第三方 API 的稳定性与额度，需要补充失败重试与本地缓存。",
+          "日报可以进一步自动化：从数据获取到图表生成、模板填充形成固定流水线。"
+        ]
+      }
+    }
+  ],
+  "projectGroups": [
+    {
+      "id": "vibe",
+      "label": "个人 Vibe Coding",
+      "en": "VIBE CODING",
+      "desc": "把想法直接做成可以点开、可以试玩的产品，验证从需求到可用原型的快速落地能力。",
+      "subs": [
+        {
+          "key": "vibe",
+          "label": "可试玩作品",
+          "desc": "两个 Coze 作品分别验证「3D 互动世界」与「AI 生活决策」，点击卡片即可打开试玩。"
+        }
+      ]
+    },
+    {
+      "id": "product",
+      "label": "产品类",
+      "en": "PRODUCT",
+      "desc": "真实业务中的 AI 与 B 端产品，从问题定义、方案设计到落地验证，覆盖 6 个细分方向。",
+      "subs": [
+        {
+          "key": "ai",
+          "label": "AI",
+          "desc": "AI 外呼分析、图纸 OCR、RAG 知识中枢——把 AI 能力落到真实业务。"
+        },
+        {
+          "key": "c",
+          "label": "C 端",
+          "desc": "面向 C 端用户的数字人与平台产品。"
+        },
+        {
+          "key": "b",
+          "label": "B 端",
+          "desc": "面向 B 端场景的具身智能硬件产品。"
+        },
+        {
+          "key": "strategy",
+          "label": "策略",
+          "desc": "以数据台账与用户画像支撑投放策略。"
+        },
+        {
+          "key": "data",
+          "label": "数据",
+          "desc": "用脚本与 GIS 把交通数据变成可读结论。"
+        },
+        {
+          "key": "service",
+          "label": "客服产品",
+          "desc": "客服查询、预约履约与业务配置的 B 端系统建设。"
+        }
+      ]
+    },
+    {
+      "id": "supply",
+      "label": "供应链类",
+      "en": "SUPPLY CHAIN",
+      "desc": "物流与供应链方向的建模优化与管理实践，聚焦成本、减排与系统设计。",
+      "subs": [
+        {
+          "key": "scm",
+          "label": "供应链管理",
+          "desc": "物流与供应链方向的建模优化与系统设计。"
+        },
+        {
+          "key": "procurement",
+          "label": "采购",
+          "desc": "采购方向内容整理中。",
+          "empty": "采购方向项目正在整理中，敬请期待补充。"
+        }
+      ]
     }
   ],
   "timeline": [

@@ -987,7 +987,7 @@ window.PORTFOLIO = (function () {
       thumbLabel: "TRAFFIC DATA",
       title: "城市交通态势分析与数据日报",
       en: "Traffic Condition Analysis",
-      org: "广州市交通规划研究院",
+      org: "广州市交通规划研究院有限公司",
       role: "工程师助理 · 数据分析",
       period: "2023.11 — 2024.02",
       category: ["数据分析", "GIS", "可视化"],
