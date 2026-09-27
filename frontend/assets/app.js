@@ -369,7 +369,7 @@
     projects: {
       num: "03 / PROJECTS",
       title: "代表项目",
-      badge: "8 个案例",
+      badge: "12 个案例",
       lead: "每个项目都可以点开查看完整的背景、问题、角色、方案、实现与结果。",
       summary: "从 AI 产品到交通科技，覆盖 4 个能力方向"
     },
@@ -711,66 +711,95 @@
       '</div></article>';
   }
 
-  function renderPlayground() {
-    var host = $('[data-render="playground"]');
-    if (!host) return;
-    var list = (P.projects || []).filter(function (p) { return p.isPlayground; });
-    host.innerHTML = list.map(playgroundCard).join('');
+  function projCard(p, i) {
+    return (
+      '<article class="proj-card reveal" data-delay="' + (i % 4) + '">' +
+      '<div class="proj-thumb proj-thumb--' + esc(p.accent) + '"><span style="position:relative;z-index:1">' + esc(p.monogram) + '</span>' + (p.isPlayground ? '<small class="proj-thumb-badge">可试玩</small>' : '') + '</div>' +
+      '<div class="proj-body">' +
+      '<div class="work-meta"><span>' + esc(p.period) + '</span><span>' + esc(p.org) + '</span></div>' +
+      '<h3><a href="project.html?id=' + esc(p.id) + '">' + esc(p.title) + '</a></h3>' +
+      '<p>' + esc(p.summary) + '</p>' +
+      '<div class="tag-row">' + (p.category || []).map(function (c) { return '<span class="tag tag--teal">' + esc(c) + '</span>'; }).join('') + '</div>' +
+      '<div class="proj-foot"><small>' + esc(p.role) + '</small>' + projectActionRow(p) + '</div>' +
+      '</div></article>'
+    );
   }
 
   function initProjects() {
-    var host = $('[data-render="projects"]');
+    var tabsHost = $('[data-project-tabs]');
+    var host = $('[data-render="project-groups"]');
     if (!host) return;
 
-    var cats = ['全部'];
-    (P.projects || []).forEach(function (p) {
-      (p.category || []).forEach(function (c) { if (cats.indexOf(c) < 0) cats.push(c); });
-    });
+    var groups = (P.projectGroups && P.projectGroups.length)
+      ? P.projectGroups
+      : [{ id: "all", label: "全部项目", en: "ALL WORK", desc: "", subs: [{ key: "all", label: "全部" }] }];
+    var projects = P.projects || [];
 
-    function onScroll() {
-      var cards = $$('.proj-card.reveal:not(.is-in)');
-      if (!cards.length || !('IntersectionObserver' in window)) return;
+    function listOf(g, sub) {
+      if (!P.projectGroups || !P.projectGroups.length) return projects;
+      return projects.filter(function (p) { return p.group === g.id && p.sub === sub.key; });
+    }
+
+    function reveal() {
+      var els = $$('.reveal:not(.is-in)', host);
+      if (!els.length) return;
+      if (!('IntersectionObserver' in window)) { els.forEach(function (c) { c.classList.add('is-in'); }); return; }
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
           if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
         });
       }, { threshold: 0.06 });
-      cards.forEach(function (c) { io.observe(c); });
+      els.forEach(function (c) { io.observe(c); });
     }
 
-    function draw(filter) {
-      var list = (P.projects || []).filter(function (p) {
-        return filter === '全部' || (p.category || []).indexOf(filter) >= 0;
-      });
-      host.innerHTML = list.map(function (p, i) {
-        return (
-          '<article class="proj-card reveal" data-delay="' + (i % 4) + '">' +
-          '<div class="proj-thumb proj-thumb--' + esc(p.accent) + '"><span style="position:relative;z-index:1">' + esc(p.monogram) + '</span>' + (p.isPlayground ? '<small class="proj-thumb-badge">可试玩</small>' : '') + '</div>' +
-          '<div class="proj-body">' +
-          '<div class="work-meta"><span>' + esc(p.period) + '</span><span>' + esc(p.org) + '</span></div>' +
-          '<h3><a href="project.html?id=' + esc(p.id) + '">' + esc(p.title) + '</a></h3>' +
-          '<p>' + esc(p.summary) + '</p>' +
-          '<div class="tag-row">' + (p.category || []).map(function (c) { return '<span class="tag tag--teal">' + esc(c) + '</span>'; }).join('') + '</div>' +
-          '<div class="proj-foot"><small>' + esc(p.role) + '</small>' + projectActionRow(p) + '</div>' +
-          '</div></article>'
-        );
-      }).join('');
-      onScroll();
+    function subSection(g, sub) {
+      var list = listOf(g, sub);
+      var head =
+        '<div class="sub-head reveal"><div>' +
+        '<h3 class="sub-title">' + esc(sub.label) + '</h3>' +
+        (sub.desc ? '<p class="sub-desc">' + esc(sub.desc) + '</p>' : '') +
+        '</div><span class="sub-count">' + list.length + ' PROJECT' + (list.length === 1 ? '' : 'S') + '</span></div>';
+      if (!list.length) {
+        return head + '<div class="sub-empty reveal"><i>◈</i><span>' + esc(sub.empty || '该方向项目整理中，敬请期待补充。') + '</span></div>';
+      }
+      var grid = '<div class="' + (list[0] && list[0].isPlayground ? 'playground-grid' : 'proj-grid') + '">' + list.map(function (p, i) {
+        return p.isPlayground ? playgroundCard(p, i) : projCard(p, i);
+      }).join('') + '</div>';
+      return head + grid;
     }
 
-    var bar = $('[data-filter="projects"]');
-    if (bar) {
-      bar.innerHTML = cats.map(function (c, i) {
-        return '<button class="filter-btn' + (i === 0 ? ' is-active' : '') + '" data-cat="' + esc(c) + '">' + esc(c) + '</button>';
+    function draw(groupId) {
+      var g = null;
+      groups.forEach(function (x) { if (x.id === groupId) g = x; });
+      if (!g) g = groups[0];
+      var intro = g.desc ? '<div class="group-intro reveal"><p>' + esc(g.desc) + '</p></div>' : '';
+      host.innerHTML = intro + g.subs.map(function (sub) { return subSection(g, sub); }).join('');
+      reveal();
+    }
+
+    if (tabsHost) {
+      tabsHost.innerHTML = groups.map(function (g) {
+        return '<button class="project-tab" data-group="' + esc(g.id) + '"><span>' + esc(g.label) + '</span><small>' + esc(g.en || '') + '</small></button>';
       }).join('');
-      $$('button', bar).forEach(function (btn) {
+      $$('button', tabsHost).forEach(function (btn) {
         btn.addEventListener('click', function () {
-          $$('button', bar).forEach(function (b) { b.classList.toggle('is-active', b === btn); });
-          draw(btn.getAttribute('data-cat'));
+          $$('button', tabsHost).forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+          draw(btn.getAttribute('data-group'));
+          if (history.replaceState) history.replaceState(null, '', '#' + btn.getAttribute('data-group'));
         });
       });
     }
-    draw('全部');
+
+    var initial = (location.hash || '').replace('#', '');
+    var hasInitial = false;
+    groups.forEach(function (g) { if (g.id === initial) hasInitial = true; });
+    if (!hasInitial) initial = groups[0].id;
+
+    if (tabsHost) {
+      var initialBtn = $$('button[data-group="' + initial + '"]', tabsHost)[0];
+      if (initialBtn) initialBtn.classList.add('is-active');
+    }
+    draw(initial);
   }
 
   /* ---------------- 项目详情 ---------------- */
@@ -796,7 +825,7 @@
         '<div class="tag-row mt-24">' +
         p.tags.map(function (t) { return '<span class="tag tag--teal">' + esc(t) + "</span>"; }).join("") +
         "</div>" +
-         (p.externalLink ? '<div class="detail-actions">' + externalAction(p, false) + '<a class="btn btn--ghost btn--sm" href="projects.html#playground">返回作品总览 <span>↗</span></a></div>' : "") +
+         (p.externalLink ? '<div class="detail-actions">' + externalAction(p, false) + '<a class="btn btn--ghost btn--sm" href="projects.html#' + esc(p.group || 'vibe') + '">返回作品总览 <span>↗</span></a></div>' : "") +
         '<div class="fact-grid">' +
         '<div class="fact"><small>MY ROLE</small><b>' + esc(p.role) + "</b></div>" +
         '<div class="fact"><small>ORGANIZATION</small><b>' + esc(p.org) + "</b></div>" +
@@ -1555,7 +1584,6 @@
     renderCapabilities();
     renderWorkCards();
     renderMarquee();
-    renderPlayground();
 
     initNav();
     initConsole();

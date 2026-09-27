@@ -2763,3 +2763,117 @@ html.js .reveal[data-delay="4"] { transition-delay: 0.32s; }
   .proj-foot > .project-action-row { margin-left: 0; width: 100%; justify-content: space-between; }
   .detail-actions .project-external { width: 100%; justify-content: center; }
 }
+
+/* ---------- 27. Project tabs & groups ---------- */
+.project-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 36px;
+  padding: 6px;
+  width: fit-content;
+  max-width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.project-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 22px;
+  border-radius: 13px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .01em;
+  cursor: pointer;
+  transition: background .28s var(--ease), color .28s var(--ease), box-shadow .28s var(--ease);
+}
+
+.project-tab small {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  font-weight: 600;
+  color: var(--text-3);
+  transition: color .28s var(--ease);
+}
+
+.project-tab:hover { color: var(--text); background: var(--surface-2); }
+
+.project-tab.is-active {
+  background: var(--teal);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(34, 197, 170, .32);
+}
+.project-tab.is-active small { color: rgba(255, 255, 255, .82); }
+
+.group-intro {
+  max-width: 720px;
+  margin: 0 0 12px;
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.sub-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 38px 0 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.sub-head:first-child { margin-top: 0; }
+.sub-head > div { min-width: 0; }
+
+.sub-title {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  color: var(--text);
+}
+
+.sub-desc {
+  margin-top: 6px;
+  max-width: 640px;
+  color: var(--text-3);
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+
+.sub-count {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+.sub-empty {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 34px 28px;
+  border: 1px dashed var(--line-3);
+  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, .55);
+  color: var(--text-3);
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+.sub-empty i { font-style: normal; font-size: 22px; color: var(--teal); }
+
+@media (max-width: 620px) {
+  .project-tabs { width: 100%; }
+  .project-tab { flex: 1 1 auto; justify-content: center; padding: 11px 14px; }
+  .project-tab small { display: none; }
+  .sub-head { align-items: flex-start; flex-direction: column; gap: 10px; }
+}
